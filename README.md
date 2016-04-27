@@ -2,6 +2,7 @@
 Minimap addon for Tree of Savior
 
 ![minimapextra](https://raw.githubusercontent.com/Maytch/ToS_MiniMapExtra/master/minimapextra-screenshot.jpg)
+
 Displays unrevealed areas of the map required for map completion, and shows map name and percentage revealed above the minimap.
 
 Credit to Excrulion, it's mostly the same as theirs but in the minimap frame.
