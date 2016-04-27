@@ -16,3 +16,4 @@ Source code available to view in the \src folder
 Issues and notes:
 - Occasionally you will reach 100% map completion on some maps even though there is a red tile remaining.
 - Function hooks onto the FPS_ON_MSG function, so any addons that directly affect that function may cause incompatabilities. Might be worth hooking onto a function that updates more than once per second.
+- Uses Lemon King's way of adding the .ipf file to the data folder, their addons are available here: https://github.com/Lemon-King/ToS-LKChat
