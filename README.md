@@ -1,6 +1,8 @@
 # ToS_MiniMapExtra
 Minimap addon for Tree of Savior
 
+![alt tag](https://raw.githubusercontent.com/Maytch/ToS_MiniMapExtra/master/minimapextra-screenshot.jpg)
+
 Credit to Excrulion, it's mostly the same as theirs but in the minimap frame.
 
 To install:
