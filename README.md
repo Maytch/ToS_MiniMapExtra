@@ -19,4 +19,5 @@ Issues and notes:
 - Uses Lemon King's way of adding the .ipf file to the data folder, their addons are available here: https://github.com/Lemon-King/ToS-LKChat
 
 Updates:
+
 2016/04/28 06:57 BST (GMT+1) Changed the code that reveals the map completion percent, credit to /u/rickgibbed on reddit.
