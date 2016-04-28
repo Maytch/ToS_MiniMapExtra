@@ -8,6 +8,10 @@ function MINIMAP_UPDATE_EVENT(frame, msg, argStr, argNum)
 	local minimapFrame = ui.GetFrame("minimap");
 	local mapFrame = ui.GetFrame("map");
 
+	-- Get completion percent
+	local completionPercent = session.GetMapFogRevealRate(mapName);
+	local completionPercent = tonumber(string.format("%.1f", completionPercent));
+
 	-- Minimap zoom level
 	local curSize = GET_MINIMAPSIZE();
 	local mapZoom = math.abs((curSize + 100) / 100);
@@ -27,16 +31,11 @@ function MINIMAP_UPDATE_EVENT(frame, msg, argStr, argNum)
 	HIDE_CHILD_BYNAME(minimapFrame, "_SAMPLE_");
 	local tileList = session.GetMapFogList(mapName);
 	local tileCount = tileList:Count();
-	local revealedTiles = 0;
-	local percentageRevealed = 0;
 	for i = 0 , tileCount - 1 do
 		local tile = tileList:PtrAt(i);
 		
-		if tile.revealed == 1 then
-			-- Count number of revealed tiles for percentage
-			revealedTiles = revealedTiles + 1;
-		else
-			-- Otherwise draw tile on minimap
+		if tile.revealed == 0 then
+			-- draw tile on minimap
 			tilePosX = (tile.x * mapZoom) - myPosition.x + framePositionWidth;
 			tilePosY = (tile.y * mapZoom) - myPosition.y + framePositionHeight;
 			tileWidth = math.ceil(tile.w * mapZoom);
@@ -53,20 +52,13 @@ function MINIMAP_UPDATE_EVENT(frame, msg, argStr, argNum)
 		end
 	end
 
-	if revealedTiles == tileCount then
-		percentageRevealed = 100;
-	else
-		percentageRevealed = (revealedTiles / tileCount) * 100;
-		percentageRevealed = tonumber(string.format("%.1f", percentageRevealed));
-	end
-
 	-- Draw map name and percentage on frame above minimap
 	local minimapExtraFrame = ui.GetFrame("minimapextra");
 	minimapExtraFrame:SetGravity(ui.RIGHT, ui.TOP);
 
 	local minimapExtraText = minimapExtraFrame:GetChild("minimapExtraText");
 	tolua.cast(minimapExtraText, "ui::CRichText");
-	minimapExtraText:SetText("{@st42}" .. mapprop:GetName() .. "  " .. percentageRevealed .. "%{/}");
+	minimapExtraText:SetText("{@st42}" .. mapprop:GetName() .. "  " .. completionPercent .. "%{/}");
 	minimapExtraText:SetGravity(ui.LEFT, ui.TOP);
 	minimapExtraText:SetTextAlign("left", "top");
 	minimapExtraText:Move(0, 0);
